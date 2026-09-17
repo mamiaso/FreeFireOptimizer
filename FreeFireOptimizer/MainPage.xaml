@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FreeFireOptimizer.MainPage"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             Title="Free Fire Optimizer">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="18">
+            <VerticalStackLayout Spacing="5">
+                <Label Text="FREE FIRE" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource NeonBlue}" />
+                <Label Text="EMULATOR OPTIMIZER" FontSize="28" FontAttributes="Bold" />
+                <Label Text="Donanımına göre performans ve hassasiyet ayarlarını keşfet." FontSize="13" TextColor="{StaticResource MutedColor}" />
+            </VerticalStackLayout>
+
+            <Border BackgroundColor="{StaticResource CardColor}" Stroke="{StaticResource BorderColor}" Padding="16">
+                <Border.StrokeShape><RoundRectangle CornerRadius="18" /></Border.StrokeShape>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="CİHAZ BİLGİLERİ" FontSize="17" FontAttributes="Bold" />
+                    <Button Text="⟳  Cihaz Bilgilerini Algıla" Clicked="OnDetectClicked" BackgroundColor="#123D5C" TextColor="{StaticResource NeonBlue}" CornerRadius="10" />
+                    <Label x:Name="DeviceStatus" Text="Cihaz bilgileri henüz alınmadı." FontSize="12" TextColor="{StaticResource MutedColor}" />
+                    <Label Text="RAM" FontAttributes="Bold" />
+                    <Picker x:Name="RamPicker" Title="RAM seç" SelectedIndex="1">
+                        <Picker.Items><x:String>4 GB</x:String><x:String>8 GB</x:String><x:String>16 GB</x:String><x:String>32 GB+</x:String></Picker.Items>
+                    </Picker>
+                    <Label Text="İşlemci (CPU)" FontAttributes="Bold" />
+                    <Entry x:Name="CpuEntry" Placeholder="Intel Core i7 / AMD Ryzen..." />
+                    <Label Text="Ekran kartı (GPU)" FontAttributes="Bold" />
+                    <Entry x:Name="GpuEntry" Placeholder="NVIDIA GTX 1650 / AMD..." />
+                    <Label Text="Emülatör" FontAttributes="Bold" />
+                    <Picker x:Name="EmulatorPicker" Title="Emülatör seç" SelectedIndex="0">
+                        <Picker.Items><x:String>BlueStacks 5</x:String><x:String>BlueStacks 4</x:String><x:String>MSI App Player</x:String><x:String>SmartGaGa</x:String><x:String>LDPlayer</x:String></Picker.Items>
+                    </Picker>
+                    <Label Text="Mouse DPI" FontAttributes="Bold" />
+                    <Picker x:Name="DpiPicker" Title="DPI seç" SelectedIndex="2">
+                        <Picker.Items><x:String>400</x:String><x:String>600</x:String><x:String>800</x:String><x:String>1000</x:String><x:String>1200</x:String><x:String>1600</x:String></Picker.Items>
+                    </Picker>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{StaticResource CardColor}" Stroke="{StaticResource BorderColor}" Padding="16">
+                <Border.StrokeShape><RoundRectangle CornerRadius="18" /></Border.StrokeShape>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="HASSASİYET AYARLARI" FontSize="17" FontAttributes="Bold" />
+                    <Grid ColumnDefinitions="*,Auto"><Label Text="Mevcut X hassasiyeti" /><Label x:Name="XValue" Text="50" Grid.Column="1" TextColor="{StaticResource NeonBlue}" /></Grid>
+                    <Slider x:Name="XSlider" Minimum="0" Maximum="100" Value="50" ValueChanged="OnXChanged" ThumbColor="{StaticResource NeonBlue}" MinimumTrackColor="{StaticResource NeonBlue}" />
+                    <Grid ColumnDefinitions="*,Auto"><Label Text="Mevcut Y hassasiyeti" /><Label x:Name="YValue" Text="50" Grid.Column="1" TextColor="{StaticResource NeonBlue}" /></Grid>
+                    <Slider x:Name="YSlider" Minimum="0" Maximum="100" Value="50" ValueChanged="OnYChanged" ThumbColor="{StaticResource NeonBlue}" MinimumTrackColor="{StaticResource NeonBlue}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="⚡  EN İYİ AYARLARI HESAPLA" Clicked="OnCalculateClicked" BackgroundColor="{StaticResource NeonBlue}" TextColor="#07111F" FontAttributes="Bold" CornerRadius="12" HeightRequest="54" />
+
+            <Border x:Name="ResultsCard" IsVisible="False" BackgroundColor="{StaticResource CardColor}" Stroke="{StaticResource BorderColor}" Padding="16">
+                <Border.StrokeShape><RoundRectangle CornerRadius="18" /></Border.StrokeShape>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="ÖNERİLEN AYARLAR" FontSize="18" FontAttributes="Bold" />
+                    <Label x:Name="EngineResult" FontSize="14" />
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderColor}" />
+                    <Label Text="HASSASİYET" FontSize="15" FontAttributes="Bold" />
+                    <Label x:Name="SensitivityResult" FontSize="14" />
+                    <Button Text="⧉  AYARLARI KOPYALA" Clicked="OnCopyClicked" BackgroundColor="#123D5C" TextColor="{StaticResource NeonBlue}" />
+                    <Button Text="▣  AYARLARI KAYDET" Clicked="OnSaveClicked" BackgroundColor="#202F46" TextColor="{StaticResource TextColor}" />
+                    <Label x:Name="ActionStatus" FontSize="12" TextColor="{StaticResource MutedColor}" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
