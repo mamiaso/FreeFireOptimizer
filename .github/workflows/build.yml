@@ -24,11 +24,11 @@ jobs:
 
     - name: Build Android APK
       run: |
-        dotnet publish FreeFireOptimizer/FreeFireOptimizer.csproj -f net8.0-android -c Release
+        dotnet publish FreeFireOptimizer/FreeFireOptimizer.csproj -f net8.0-android -c Release -p:CheckEolWorkloads=false
 
     - name: Build Windows EXE
       run: |
-        dotnet publish FreeFireOptimizer/FreeFireOptimizer.csproj -f net8.0-windows10.0.19041.0 -c Release -p:WindowsPackageType=None
+        dotnet publish FreeFireOptimizer/FreeFireOptimizer.csproj -f net8.0-windows10.0.19041.0 -c Release -p:WindowsPackageType=None -p:CheckEolWorkloads=false
 
     - name: Upload Android APK
       uses: actions/upload-artifact@v4
